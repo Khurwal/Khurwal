@@ -1,0 +1,16 @@
+SELECT  FROM `ashwaniproject.incubitDataSet.mytable` LIMIT 1000
+
+SELECT  FROM `ashwaniproject.incubitDataSet.mytable` LIMIT 1000
+
+INSERT INTO `ashwaniproject.incubitDataSet.mytable` values(1,'IT',2000)
+
+
+with count_chek as( 
+select 1 as id,'IT' as dept_name,2000 as sal
+union all select 1 as id,'IT' as dept_name,3000 as sal
+union all select 1 as id,'IT' as dept_name,4000 as sal
+union all select 1 as id,'IT' as dept_name,5000 as sal
+union all select 2 as id,'IT' as dept_name,2000 as sal
+union all select 2 as id,'IT' as dept_name,5000 as sal
+union all select 2 as id,'IT' as dept_name,3000 as sal)
+select * ,dense_Rank() over(partition by id order by sal) from count_chek
