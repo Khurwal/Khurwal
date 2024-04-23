@@ -1,0 +1,129 @@
+###########################################Designing Data Processing Systems
+Let’s begin by exploring the role of a Professional Data Engineer in migrating Cymbal Retail’s data from its private data centers to Google Cloud.
+00:10
+Let’s look at the various challenges a Professional Data Engineer will face in accomplishing this task.
+00:17
+Cymbal Retail’s existing private data centers are going to be decommissioned in the next two years.
+00:23
+You need to help migrate existing data and data processing systems to Google Cloud.
+00:29
+Similar migrations have to also be conducted in acquired companies with their own private data centers.
+00:36
+As a Professional Data Engineer, your role involves ensuring that there is a uniform approach to managing and securing the data.
+00:45
+Controlling access at a granular level based on employee role is critical to complying with regional laws and industry regulations.
+00:54
+You need to understand and deploy options to control the security of data via encryption.
+01:00
+Whether during migration or in the course of regular operations, certain data has to be captured and stored, but never revealed to other parts of the organization, for example, analysts.
+01:13
+You need to employ tools to redact information, and you need be able to extend these tools as required to meet future requirements.
+01:23
+You will be required to move data reliably from external sources into Google Cloud.
+01:29
+Sometimes, the data movement might be done over many days.
+01:33
+In other cases, data needs to be quickly moved as and when it arrives in other data sources for up to date analytics.
+01:42
+As data is moved into Google Cloud, it will also need to be assessed for quality and cataloged for easy discoverability by consumers of the data.
+01:53
+Cymbal Retail’s data is used simultaneously by different divisions to manage their business—finance, marketing, purchasing, sales, compliance, legal, store operations, and more.
+02:04
+However, all of these groups do not need access to all the data.
+02:11
+You should ensure fine-grained control on the data which is strictly on a need-to-know basis.
+################################Designing Data Processing Systems
+
+The diagnostic questions in this course can be challenging, and some of them have several layers or decisions to make.
+00:07
+Let’s examine some approaches you can use when analyzing complicated questions through a detailed discussion of a few diagnostic questions from this first module.
+00:17
+Let’s start with question
+00:19
+3. First, consider the question stem.
+00:24
+We can break the stem up into multiple parts.
+00:28
+The first part of the stem is the scenario, which gives you context for the question: “You are migrating on-premises data to a data warehouse on Google Cloud. This
+00:40
+data will be made available to business analysts. Local regulations require that customer information including credit card numbers, phone numbers, and email IDs be captured, but not used in analysis.”
+00:58
+In this scenario you learn some key information: Your data includes personally identifiable information (PII), but it cannot be used in analysis.
+01:10
+Next, you can identify the goal statement, or what it is you need to accomplish: “You need to use a reliable, recommended solution to redact the sensitive data.”
+01:24
+From this goal, you know to look for options that are reliable (accurate and consistent in performance) and follow Google-recommended practices.
+01:34
+So, what should you do?
+01:38
+Start by noticing patterns in the responses.
+01:42
+Two options, A and D, have you use the Cloud Data Loss Prevention (DLP) API.
+01:50
+Option B has you manually delete columns, and Option C has you create a regular expression to delete information.
+01:59
+You can eliminate option B right away - it is not reliable.
+02:04
+Columns might contain sensitive data, even if it is not indicated by the title.
+02:10
+For example, there could be a comments column with sensitive private information.
+02:16
+You can also eliminate option C. Determining the regular expressions that match different data types can be more tedious and less accurate than using Cloud DLP.
+02:28
+This leaves you with the two options using Cloud DLP, and you need to determine the correct usage.
+02:35
+Look at the differences between them.
+02:37
+In option A, you identify and redact data that matches certain infoTypes.
+02:44
+In option B, you perform date shifting of entries.
+02:48
+You can eliminate option D, because date shifting the entries does not redact the personal identifiable information (PII) like credit card numbers, phone numbers, and email IDs.
+03:01
+This leaves you with option A. Cloud Data Loss Prevention helps you discover, classify, and protect your most sensitive data.
+03:11
+There are predefined infoTypes that you can employ to identify and redact specific data types.
+03:18
+Now, let’s examine question
+03:20
+4. First, let’s break the stem up into multiple parts.
+03:26
+It begins with the scenario: “Your data and applications reside in multiple geographies on Google Cloud. Some regional laws require you to hold your own
+03:37
+keys outside of the cloud provider environment, whereas other laws are less restrictive and allow storing keys with the same provider who stores the data.”
+03:48
+There is a key point here - to comply with all the laws of some regions
+03:51
+your organization operates in, you need to hold your own keys outside of the cloud provider environment.
+03:59
+Next, you can identify the goal: you need a solution that can centrally manage all your keys.
+04:07
+So, what should you do?
+04:10
+In this question, each of the responses has you choose a different option.
+04:17
+You can eliminate one of the responses right away… … because confidential computing does not affect the storage of data.
+04:25
+Of the remaining responses, all three use services to help manage your keys.
+04:32
+You need to determine where the keys will be stored.
+04:36
+Options B and C store keys on Google Cloud.
+04:40
+Option D stores keys on an external key management partner.
+04:45
+You can eliminate the options that store keys on Google Cloud, because they won’t meet the requirement for the data and the keys to be stored in different provider environments.
+04:56
+That leaves you with option D as the correct answer.
+05:00
+Because you need a single solution that also has to store keys externally, this would be the appropriate choice.
+05:09
+Use the approach that helps you as you answer diagnostic questions throughout this course.
+05:15
+Remember to read the question stem carefully, and identify the key points and requirements.
+05:22
+Some questions have multiple parts.
+05:25
+Consider each of the requirements posed by the question.
+05:28
+Find the similarities and differences in the responses, and eliminate responses that do not meet the requirements.

@@ -1,0 +1,29 @@
+# Python program to write JSON
+# to a file
+ 
+ 
+import json
+ 
+# Data to be written
+dictionary = {
+    "name": "sathiyajith",
+    "rollno": 56,
+    "cgpa": 8.6,
+    "phonenumber": "9976770500"
+}
+ 
+with open("sample.json", "w") as outfile:
+    json.dump(dictionary, outfile)
+
+#########################
+#pyhton program to read a a json file
+import json
+ 
+# Opening JSON file
+with open('sample.json', 'r') as openfile:
+ 
+    # Reading from json file
+    json_object = json.load(openfile)
+ 
+print(json_object)
+print(type(json_object))

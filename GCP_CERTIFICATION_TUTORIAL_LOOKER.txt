@@ -1,0 +1,2031 @@
+
+
+
+########################################Understand the Data Analytics Lifecycle on Google Cloud############################
+00:00
+Before learning about the analysis stage, it’s important to understand the various storage solutions Google Cloud offers.
+00:06
+Every application needs to store data, and different applications and workloads require different storage solutions.
+00:12
+This section focuses on the storage step of the data analytics lifecycle.
+00:18
+Google Cloud offers several core storage products.
+00:20
+This list includes: Cloud Storage, Cloud SQL, Cloud Spanner, BigQuery, Firestore, Cloud Bigtable, and AlloyDB for PostgreSQL.
+00:34
+Depending on your use case, you might use one or several of these services to do the job.
+00:39
+Before getting into the details of each of these storage options, let’s differentiate between data sources.
+00:45
+Data sources are connectors that let you query data from various sources.
+00:50
+You can use data sources to create datasets, which are collections of data that can be used for analysis and machine learning.
+00:57
+Google Cloud data sources can be classified into two categories: Cloud data sources are data sources that are stored on Google Cloud.
+01:06
+For example, you can connect to a Cloud Storage bucket or a Cloud SQL database.
+01:11
+External data sources can be stored on-premises or in another cloud provider.
+01:15
+For example, you can connect to an Amazon S3 bucket or a Microsoft SQL Server database.
+01:22
+You can create a data source connection by using the Google Cloud console, the Cloud SDK, or the Google Cloud API.
+01:30
+What are some benefits of using Google Cloud data sources?
+01:34
+First, Google Cloud data sources give centralized access to your data, which makes it easier to find and analyze data, regardless of where it’s stored.
+01:44
+Google Cloud data sources also help you integrate data from different sources.
+01:48
+This integration can be helpful for building data warehouses and data lakes.
+01:53
+We discuss these storage options in this course.
+01:56
+They can also be used to analyze your data, so you can identify trends, make predictions, and make better business decisions.
+02:03
+Finally, in general, data sources can be used to visualize your data, to help you communicate your findings to others and make your data more actionable.
+02:12
+Now that you know what data sources are and the benefits of using Google Cloud data sources, let’s explore storage options.
+02:19
+The list of storage options includes databases, data warehouses, and data lakes.
+02:24
+A database is an organized collection of data stored in tables and accessed electronically from a computer system.
+02:31
+and accessed electronically from a computer system.
+02:32
+Google Cloud offers relational and non-relational database options.
+02:37
+Relational databases, such as Cloud SQL, Cloud Spanner, and AlloyDB for PostgreSQL store and provide access to data points that are related to one another.
+02:47
+A relational database can establish links–or relationships–between information by joining tables, and structured query language, or SQL, can be used to query and manipulate data.
+02:58
+This type of database is highly consistent, reliable, and best suited for dealing with large amounts of structured data.
+03:06
+A non-relational database, sometimes known as a NoSQL database, is less structured in format and doesn’t use a tabular format of rows and columns like relational databases.
+03:20
+Non-relational databases follow a flexible data model, which makes them ideal for storing data that changes its organization frequently or for applications that handle diverse types of data.
+03:30
+Bigtable is a non-relational database product.
+03:33
+While a database is designed to capture data for storage, retrieval, and use, a data warehouse is designed to analyze data.
+03:42
+A data warehouse is an enterprise system used for the analysis and reporting of structured and semi-structured data from multiple sources.
+03:51
+BigQuery is Google Cloud's data warehouse offering.
+03:55
+This course focuses on analyzing data in BigQuery and visualizing it with Looker and Looker Studio.
+04:01
+A data lake is a repository designed to ingest, store, explore, process, and analyze any type or volume of raw data, regardless of the source.
+04:11
+It can store different types of data in its original format; ignoring size limits, and without much pre-processing or adding structure.
+04:19
+Data lakes often consist of many different products, depending on the nature of the data that is ingested.
+04:25
+Data warehouses and data lakes should be considered complementary instead of competing tools.
+04:30
+Although both store data in some capacity, each is optimized for different uses.
+04:36
+Different data types have different purposes and uses.
+04:40
+Structured data, which is data that has been organized into rows and columns, is best fit for data analytics.
+04:46
+This type of data is well-suited for statistical analysis and other techniques used in data analytics.
+04:52
+Machine learning can use both structured and unstructured data.
+04:57
+Unstructured data is data that does not fit neatly into a table or spreadsheet.
+05:01
+This type of data can be text, images, or audio.
+05:05
+Machine learning algorithms can learn from unstructured data to identify patterns and make predictions.
+
+
+
+
+#######################################################Explore Data and Extract Insights by Using BigQuery
+
+00:00
+Hello and welcome to this module on exploring data and extracting insights using BigQuery.
+00:06
+BigQuery is at the very core of analytics on Google Cloud.
+00:10
+BigQuery is a fully-managed data warehouse.
+00:13
+A data warehouse is a large store, containing terabytes and petabytes of data gathered from a wide range of sources within an organization, that's used to guide management decisions.
+00:23
+There are three sections in this module.
+00:25
+First, you learn all about BigQuery, Google Cloud’s data warehouse solution.
+00:29
+Next, you learn how BigQuery works, and how to derive insights from your data.
+00:34
+Finally, you learn how BigQuery organizes data to make analytics easier for data analysts.
+00:39
+Along the way, you will view demo content of the BigQuery user interface.
+00:43
+Ready?
+00:44
+Let’s get started!
+
+
+#############################################################Explore Data and Extract Insights by Using BigQuery
+
+
+Let’s begin with an introduction to BigQuery for data analysts.
+00:04
+In this section, we introduce BigQuery, Google’s data warehouse solution, and discuss its features and uses, and conclude with a demo.
+00:13
+What do we mean when we say BigQuery is a fully managed data warehouse?
+00:18
+It means that BigQuery takes care of the underlying infrastructure, so you can focus on using SQL queries to answer business questions without worrying about deployment, scalability, and security.
+00:30
+At this point, it’s useful to consider what the main difference is between a data warehouse and a data lake.
+00:37
+A data lake is just a pool of raw, unorganized, and unclassified data, which has no specified purpose.
+00:43
+On the other hand, a data warehouse contains structured and organized data, which can be used for advanced querying.
+00:51
+As a data warehouse, BigQuery can store transformed data for business insights.
+00:58
+Data sources feed into a data lake and are processed into your data warehouse for analysis and reporting.
+01:06
+Of course, the purpose of BigQuery is not to just save data; it’s for analyzing data and helping to make business decisions.
+01:14
+BigQuery is optimized for running analytic queries over large datasets.
+01:18
+It can perform queries on terabytes of data in seconds and petabytes in minutes.
+01:24
+This performance lets you analyze large datasets efficiently and get insights in near real time.
+01:33
+To give you an idea of the scale of data BigQuery can work with: One Google Cloud customer has over 350 PB of data stored in BigQuery.
+01:44
+Other customers have run queries on over 10 trillion rows and concurrent queries running on over 100 trillion rows over multiple customers.
+01:54
+And another customer has run 10,000 concurrent queries at the same time.
+02:01
+So what does a typical data warehouse solution architecture look like?
+02:06
+BigQuery is the analytics engine that sits at the end of the data pipeline.
+02:10
+It stores incoming data and then lets you do your analysis and model building.
+02:16
+BigQuery is actually two services in one: it’s both a fast SQL query engine and also a fully managed storage layer for loading and storing your datasets.
+02:27
+BigQuery maximizes flexibility by separating the compute resources that analyze your data from your storage choices.
+02:35
+You can store and analyze your data within BigQuery or use BigQuery to assess your data where it lives.
+02:41
+Federated queries let you read data from external sources while streaming supports continuous data updates.
+02:48
+Powerful tools like BigQuery ML and BI Engine let you analyze and understand that data.
+02:53
+Let’s look at some of the key features of BigQuery.
+02:58
+First, BigQuery provides two services in one.
+03:01
+It’s a place to store and analyze petabytes of data, with built-in features like machine learning, geospatial analysis, and business intelligence.
+03:10
+BigQuery is a fully managed serverless solution, which means that you don’t need to worry about provisioning any resources or
+03:15
+managing servers in the backend but only focus on using SQL queries to answer your organization's questions in the frontend.
+03:24
+If you’ve never written SQL before, don’t worry.
+03:27
+This course provides resources and labs to help.
+03:31
+BigQuery has a flexible on-demand pricing model where you pay for the number of bytes of data your query processes and for any permanent table storage.
+03:39
+If you prefer to have a fixed bill every month, you can also subscribe to capacity compute pricing where you have a reserved amount of resources for use.
+03:49
+Data in BigQuery is encrypted at rest by default without any action required from a customer.
+03:55
+By encryption at rest, we mean encryption used to protect data that is stored on a disk, including solid-state drives, or backup media.
+04:04
+And finally, BigQuery has built-in machine learning features so you can write ML models directly in BigQuery using SQL.
+04:11
+Also, if you decide to use other professional tools—such as Vertex AI from Google Cloud—to train your ML
+04:17
+models, you can export datasets from BigQuery directly into Vertex AI for a seamless integration across the data-to-AI lifecycle.
+04:27
+Now it’s time to login to the BigQuery user interface, to demonstrate how you can query Terabytes of data in seconds.
+04:36
+First things first, let's open BigQuery, which can be found in the navigation menu.
+04:42
+Now this is what the BigQuery user interface looks like.
+04:45
+Every resource in Google Cloud exists inside a project, which you can view here.
+04:51
+In addition to security and access control, a project is what links usage of a resource to a credit card: it makes a resource billable.
+04:59
+BigQuery has numerous public datasets that anyone can query.
+05:03
+One of these is all public Wikipedia page metadata.
+05:06
+Next, let’s simply paste and run a SQL query to see how fast BigQuery can
+05:11
+scan and process 10 billion rows looking for the word “Google” in the Wikipedia page title.
+05:18
+BigQuery's scalable, distributed analysis engine lets you query terabytes in seconds and petabytes in minutes.
+05:26
+The query includes filtering, grouping, and ordering on a dataset that contains 10 billion records and runs quickly and efficiently in BigQuery.
+05:36
+In BigQuery, data is stored inside datasets.
+05:39
+Datasets contain tables, and tables contain columns.
+05:42
+Access to data in BigQuery is controlled at many levels, from the project and dataset to the individual table, column, and row.
+05:50
+A BigQuery slot is a virtual CPU used by BigQuery to execute SQL queries.
+05:56
+BigQuery automatically calculates how many slots each query requires, depending on query size and complexity.
+06:03
+You don't need to provision resources before using BigQuery, unlike many relational database management systems.
+06:10
+BigQuery allocates storage and query resources dynamically based on your usage patterns.
+06:16
+Storage resources are allocated as you consume them and deallocated as you remove data or drop tables.
+06:23
+Query resources are allocated according to query type and complexity.
+06:28
+Each query uses some number of slots, which are units of computation that comprise a certain amount of CPU and RAM.
+06:36
+There is no minimum usage commitment.
+06:38
+The service allocates and charges for resources based on your actual usage.
+06:44
+By default, all BigQuery customers have access to 2,000 slots for query operations.
+06:50
+You can also reserve a fixed number of slots for your project
+
+
+######################################################Explore Data and Extract Insights by Using BigQuery
+
+
+This section is a bit more technical and explores how BigQuery works.
+00:04
+Let’s begin by discussing how BigQuery’s two services, analytics and storage, work together to power your data-driven innovation.
+00:14
+Google's high speed internal network connects the two services.
+00:17
+This super fast network is what enables us to separate compute and storage.
+00:21
+So what does each service do?
+00:24
+The short answer is that the services are fully-managed so users like you and me don’t
+00:28
+have to worry about how BigQuery stores data on disk or autoscales machines for big queries.
+00:35
+That said, it’s a great learning exercise to understand how the services perform their magic so we can better understand what is happening.
+00:44
+First up is the BigQuery storage service.
+00:46
+The storage service automatically manages the data that you ingest into the platform.
+00:52
+BigQuery organizes data tables into units called datasets.
+00:55
+These datasets are scoped to your Google Cloud project.
+00:58
+When you reference a table from the command line in SQL queries or in code, you refer to it by using the construct: project.dataset.table.
+01:09
+The tables are stored as highly compressed columns in Google’s Colossus file system which provides durability and availability.
+01:18
+The storage service supports bulk data ingest and streaming ingest.
+01:22
+So it can work with huge amounts of data and also real-time data streams.
+01:28
+The query service runs interactive or batch queries that are submitted through console, the BigQuery web UI, the bq command line tool, or REST API.
+01:38
+The REST API is supported for seven programming languages.
+01:43
+Recall, in the demo earlier, we used the BigQuery web UI to submit the query.
+01:50
+There are connectors to other services such as Dataproc, which simplify creating complex workflows between BigQuery and other Google Cloud data processing services.
+02:02
+The query service can also run query jobs on data contained in other locations, such as tables in CSV files hosted in Cloud Storage or data in Google Sheets.
+02:12
+Before you get too excited about running queries on your data in Google Sheets, you should
+02:17
+know that BigQuery is most efficient when working with data contained in its own storage service.
+02:22
+The storage service and the query service work together to internally organize the data and make queries efficient over huge datasets of Petabytes in size.
+02:32
+They even optimize your query processing job after you submit it.
+02:38
+One of the most important controls you have over resource consumption and costs is controlling the amount of data processed.
+02:45
+In general, you only want to select the columns of data you actually want to process and return.
+02:52
+A best practice is to start broad when you’re exploring the dataset and then focus on those critical fields and rows that you need.
+03:00
+Exploring your dataset with SQL is your first step in uncovering hidden insights.
+03:05
+Let’s briefly go back to the BigQuery user interface and view another example.
+03:11
+Here we’re running a query to count the total number of trips taken on the public dataset for San Francisco bike share trips.
+03:20
+There is often uncertainty around the quality of the data in your dataset, so you can use SQL to explore and filter for anomalies.
+03:28
+Here we filtered customer records that didn’t contain a birth date by setting member_birth_year IS NOT NULL as a filter.
+03:35
+We also applied the group by clause to group the results by the starting station name.
+03:40
+The order by clause helps with sorting the results, while the limit only shows the top 5 results.
+
+
+
+
+
+
+################################################################Explore Data and Extract Insights by Using BigQuery
+
+In addition to fast query execution times, recall that BigQuery also manages the storage and metadata for your datasets.
+00:06
+Let’s discuss how BigQuery organizes data to make exploration and analytics easier.
+00:14
+What are some reasons to structure your information into datasets, projects, and tables?
+00:19
+These multiple scopes—project, dataset, and table—can help you structure your information logically.
+00:25
+You can use multiple datasets to separate tables pertaining to different analytical domains, and you can use project-level scoping to isolate datasets from each other according to your business needs.
+00:36
+You can align projects to billing and use datasets for access control.
+00:41
+You store data in separate tables based on logical schema considerations.
+00:47
+Every table has a schema.
+00:48
+You can enter the schema manually through the Google Cloud console or by supplying a JSON file.
+00:54
+File formats like Avro, Parquet, ORC, Firestore export, or Datastore export are self-describing, so BigQuery automatically infers the table schema from the source data.
+01:08
+BigQuery is called a "columnar store," which means that it is designed for processing columns, not rows.
+01:14
+Because BigQuery only reads the relevant columns to execute a query, it is optimized for the high reads of data warehouses.
+01:21
+Since each column has data of the same type, BigQuery can compress the column data much more effectively.
+01:28
+Each column is automatically compressed, encrypted, and replicated to support availability and durability of data in BigQuery.
+01:37
+BigQuery stores data in a massively distributed format.
+01:40
+This is the same for Google Cloud Storage and is what powers apps like Gmail, Ads, and many more Google products.
+01:48
+BigQuery auto-optimizes the balancing and partitioning of these data shards in the back end.
+01:53
+Alternatively, you can also partition and cluster your tables based on your access patterns to control costs and make your queries more performant.
+02:00
+Let’s once again demonstrate how to use SQL in BigQuery to analyze data.
+02:07
+Following this demo, you’ll get hands-on experience with a lab.
+02:11
+The first thing we’ll do is add some data.
+02:12
+Let’s click Add Data and then select Public Datasets.
+02:16
+And in this case we want to analyze New York Citi bike trip data, so let’s search for that data set and then click View Dataset.
+02:28
+In the BigQuery console, you see two projects in the left pane, one named your Qwiklabs project ID, and one named bigquery-public-data.
+02:39
+Let’s scroll down and find our table.
+02:49
+And then we’ll select the table and then the Preview tab to examine the columns and data.
+02:59
+Next, let’s run a new query.
+03:09
+This query will tell us the typical duration for the 10 most common one-way rentals.
+03:17
+Let’s run one more query, this time to find the total distance traveled by each bicycle in the dataset.
+03:28
+Note that in this case we are pulling data from a couple different datatables (citybike_trips and citibike_stations) and joining the tables together to get the intended results.
+
+####################################################Make Data-driven Decisions by Using Looker
+
+Welcome to this section on Looker, where you learn the fundamentals of analyzing, visualizing, and sharing data by using the Looker platform.
+00:07
+With Looker, you can activate and use the data you’ve analyzed to empower your teams to make effective, data-driven decisions.
+00:14
+So, what’s Looker?
+00:16
+Looker is a powerful tool that helps you: Access and review the data that your company collects.
+00:21
+Answer data questions in real-time.
+00:23
+Stay up-to-date with the status of your business.
+00:26
+And use data to drive decision making.
+00:28
+Let’s examine the common data analysis process in Looker.
+00:32
+First, identify the data questions you want to answer.
+00:36
+Perhaps you’re an analyst for an ecommerce retailer.
+00:39
+Some standard questions include: How many sales were made last week?
+00:42
+What’s your user or customer demographics?
+00:45
+What is the shipment status of all orders?
+00:48
+The next step is to identify the data required to answer your questions.
+00:53
+Referring to our previous ecommerce example, if you want to determine the shipment status of all
+00:57
+orders, you need data on orders, shipments, and perhaps additional info such as distribution center data.
+01:05
+If you’re analyzing your users, you might want data on where those users are coming from, such as traffic source and location.
+01:11
+Next, it’s time to analyze the data.
+01:15
+In Looker, data analysis is referred to as “exploring.”
+01:18
+After you identify your data questions and the data that you need, you're ready to combine dimensions and measures in Looker to find the answers.
+01:26
+You learn more about dimensions and measures in this course.
+01:29
+Finally, interpret the results.
+01:32
+After you analyze and visualize the data, you can gain insight, act, and make data-driven decisions.
+01:39
+Referring to the ecommerce example, perhaps you discovered that a large percentage of your customers were directed to your website from a recent campaign designed by your marketing team.
+01:49
+By using data to show the success of the campaign, you can advocate for more similar campaigns in the future to increase sales.
+01:57
+In this section you learn to: Manipulate a Looker Explore to answer data-driven questions.
+02:01
+Create a situation-appropriate visualization to highlight the answer for a data-driven question.
+02:07
+And share visualizations with others.
+02:08
+Let’s get started!
+
+
+##################################################################Make Data-driven Decisions by Using Looker
+
+
+Let’s begin by viewing the Looker interface, and detailing the main components used for data exploration.
+00:06
+In Looker, an Explore is a report-builder interface, and a portal to ask questions by using your data.
+00:13
+Explores are curated by Looker developers in a proprietary templating language called LookML.
+00:19
+The Explores that you were given access to are listed in the Explore section.
+00:23
+This Explore example contains ecommerce data.
+00:26
+The left side panel displays the field picker, where fields are bundled into groups called views.
+00:32
+The two primary fields for exploring data in Looker are dimensions and measures.
+00:37
+Dimensions are attributes or characteristics of your data.
+00:41
+Each column in a database table is a dimension in Looker.
+00:44
+For example, this database table displays data for orders.
+00:48
+Each column in the table displays an attribute for the order, such as the date the order was placed, the sale price, and the shipping status.
+00:57
+In Looker, all of these columns are dimensions.
+01:01
+Measures are calculations performed across multiple rows of data.
+01:05
+As such, measures are aggregates of data attributes, or dimensions.
+01:09
+Perhaps you want to learn how many orders were placed last week.
+01:13
+Anytime you have a question like “how many,” you probably want to look for a measure with the word count or number in it (in this case, count).
+01:21
+To find the answer to this data question, you must first group the data by dimension–in this case, the order date–and then add a count measure.
+01:30
+You often need to combine dimensions and measures to answer your data questions.
+01:35
+These dimensions and measures can also span across multiple views.
+01:39
+Let’s look at another example, this time analyzing user data.
+01:43
+Notice that the dimensions in the field picker are listed alphabetically, and some dimensions are grouped, like Created Date.
+01:50
+Use the search function to quickly find the dimension you’re looking for.
+01:54
+In this example, the goal is to identify which cities have the most users, so start by
+01:58
+adding the city dimension and then the count measure to see how many users are in each city.
+02:06
+Set a row limit to 10 to see the top 10 cities.
+02:09
+After all is set, click Run to display the top 10 cities based on the number of users.
+02:15
+Let’s go a step further and adjust the visualization.
+02:18
+There are various different visualization options to choose from.
+02:21
+In this example, it probably makes sense to display the visualization as a column chart.
+02:26
+You can also add labels to the side of each bar to see the total bar value.
+02:30
+Click Edit, and turn on Value Labels in the Values tab.
+02:34
+Each column in the chart now has its value displayed.
+02:37
+Now, the column chart showing the top 10 cities with the most users is complete.
+02:43
+Next, let’s filter the results.
+02:46
+Filters narrow the results returned based on specific criteria, so you can focus on a subset of your data based on desired characteristics.
+02:54
+A key feature of filters is that they don’t delete anything from the database; they’re only applied to the data that Looker displays on your screen.
+03:02
+You can filter both dimensions and measures.
+03:05
+The following example demonstrates how to filter on a dimension.
+03:09
+Perhaps the results of our previous query–displaying cities across the United States–is too broad, and
+03:14
+instead you want to narrow the results to only show cities in the state of California.
+03:19
+You can narrow the results by adding a filter for the state of California.
+03:23
+After you rerun the query, The results are filtered to display just the top 10 cities in California.
+03:31
+The final exploring technique covered in this section is pivoting.
+03:35
+Pivots let you turn a selected dimension into several columns, which creates a matrix of your data.
+03:41
+Perhaps in addition to the city dimension, you want to add the age tier dimension to group your users by age.
+03:48
+After the query is run, the table doesn’t show the intended results.
+03:52
+For example Los Angeles appears on multiple rows, and only four of the top 10 cities are displayed.
+03:58
+This is where a pivot can be useful.
+04:00
+Pivoting the table by the Age Tier dimension brings the age tier to the top of the table, and now all age tiers and cities are visible.
+04:09
+When you pivot on a dimension, each unique possible value of that dimension becomes its own column header.
+04:16
+Any measures are then repeated under each column header.
+04:20
+After you pivot the results, you can easily compare results by different groupings and identify potential gaps, all while leaving your underlying data unaffected.
+04:29
+Let’s go back to the Looker user interface and use another example to demonstrate how pivots work.
+04:36
+In the Order Items Explore, the Total Sale Price measure is added.
+04:40
+Next, the Product Category and Department dimensions are added to group the results by these characteristics.
+04:47
+After the query is run, the two departments appear on multiple rows.
+04:51
+This table can be made more useful and easier to read by adding a pivot.
+04:55
+Pivoting on the department dimension brings department to the top of the table, so when you rerun the query, each department is displayed in a single column.
+05:04
+If you notice some interesting insights or trends in your data, you can save your findings to a dashboard or as a Look.
+05:11
+A Look is a single, saved report or visualization.
+05:15
+Looks typically answer an individual data question, and they can be added to a dashboard.
+05:19
+A dashboard is a series of saved reports, all on one page.
+05:24
+A dashboard presents the answers to multiple data questions, and is often where data explorers store their data findings.
+05:31
+Explores, Looks, and dashboards can all be shared with others.
+05:36
+You learn more about data sharing in this course.
+
+
+#######################################Make Data-driven Decisions by Using Looker
+
+In addition to Looker, you can use Looker Studio to visualize your data.
+00:05
+Looker provides powerful analytics tools for analyzing data and creating reports.
+00:11
+Looker Studio features less analytics functionality and focuses more on a simple, easy to use interface for data visualization.
+00:18
+Looker Studio offers several features that make it easy to share and collaborate on reports.
+00:24
+You can publish reports to the web, and you can also embed reports in other applications.
+00:30
+The benefits of using Looker Studio for data visualizations include: A drag-and-drop interface that makes it easy to create reports and dashboards.
+00:38
+Various reports and dashboards, including charts, graphs, and tables.
+00:43
+Powerful features that let you create professional-looking reports, such as the ability to add filters and drill down into data.
+00:50
+Real-time collaboration on reports and dashboards.
+00:53
+And security features that let you control who has access to your data.
+00:57
+Looker and Looker Studio can be integrated using the Looker connector for Looker Studio.
+01:03
+This integration lets you connect to any Google Cloud-hosted Looker instance and create reports and dashboards by using Looker data.
+01:10
+The Looker connector is just one of many different connectors available in Looker Studio.
+01:15
+To use the Looker connector, you must first enable the integration in your Looker instance.
+01:19
+After the integration is enabled, you can create a new report in Looker Studio and select the Looker connector as your data source.
+01:26
+You’re then prompted to enter the URL of your Looker instance and to select an Explore.
+01:32
+Once you have selected an Explore, you can start creating your report by using Looker data.
+01:38
+To create a situation-appropriate visualization in a report in Looker Studio, you need to consider the following: First, what type of data are you working with?
+01:47
+Second, what insights are you trying to communicate?
+01:50
+What you’re trying to communicate will influence the type of visualization option you choose.
+01:55
+And finally, who is the audience you are creating the report for?
+01:58
+The audience may influence how you style and organize your report.
+02:02
+Next, let’s examine the most common visualization options in Looker Studio.
+02:07
+Bar charts are a great way to compare data across different categories.
+02:12
+Line charts are a great way to show how data changes over time.
+02:16
+Area charts are similar to line charts, but the area below the line is filled in.
+02:20
+Pie charts are useful to show the relative proportions of different categories.
+02:25
+Donut charts are similar to pie charts, but they leave a hole in the center.
+02:29
+Scatterplots are a great way to show the relationship between two variables.
+02:34
+Heatmaps are used to show the distribution of data.
+02:37
+And lastly, maps show data that is geographically located.
+02:41
+In addition, you can also create custom visualizations with Looker Studio.
+02:45
+Let’s demonstrate how to create a simple chart in Looker Studio by using Looker data.
+02:50
+In this example, Looker has already been connected as the data source by using the Looker connector.
+02:56
+A report in Looker Studio is the same as a dashboard in Looker, and consists of one or several charts.
+03:02
+Charts are ways to visualize dimensions and metrics.
+03:05
+You can create a chart in Looker Studio by clicking Add a chart in the toolbar, and then selecting the type of chart you want to use.
+03:12
+Let’s assume you work at an Ecommerce store, and you want to visualize the count of orders for each category over the past year.
+03:19
+A line chart or an area chart would be a great visualization for this type of data.
+03:24
+After you select your desired chart, it’s added to the report.
+03:28
+Next, customize the data, much like you would in Looker, by adding dimensions for the order created date and product category.
+03:38
+Created date is a date range, so it’s added as the date range dimension.
+03:43
+And the data will be broken down by the product category, so specify Products category as the breakdown dimension.
+03:53
+The chart currently displays all order data from the past few years.
+03:57
+To limit the results–in this case, to the past year–add a filter.
+04:20
+And now the chart displays the count of orders by date, broken down by category, over the past year.
+04:29
+Finally, under the style tab, you can customize the different components of the chart, such as labels, colors, and fonts, or you can switch to a different visualization altogether.
+
+
+####################################Make Data-driven Decisions by Using Looker
+
+00:00
+The value of Looker and Looker Studio does not end with data analysis and visualization.
+00:06
+Sharing reports and dashboards with others improves collaboration, enables data-driven decision-making, and increases transparency.
+00:14
+Data can be shared from both Looker and Looker Studio.
+00:18
+In this lesson, you learn the benefits and drawbacks of each.
+00:21
+First, let’s explore data sharing from Looker.
+00:25
+Sharing data in Looker improves communication and collaboration, which leads to faster decision-making and improved efficiency.
+00:32
+In addition, Looker provides a centralized repository for data, which ensures that data is accurate, consistent, and easy to find.
+00:39
+Looker is also scalable, and can be integrated with other data sources and applications.
+00:44
+However, there are also some drawbacks to using Looker to share data.
+00:48
+First, Looker stores data in the cloud, which means that it’s potentially vulnerable to security breaches.
+00:54
+However, Looker does offer several security features that can help to protect data, such as encryption and access control.
+01:01
+Second, Looker is a paid platform, and the cost can be a factor for some organizations.
+01:06
+Finally, Looker is a relatively complex platform, and there can sometimes be a steep learning curve.
+01:12
+Alternatively, you can use Looker Studio to share data.
+01:16
+Benefits of using Looker Studio include: Ease of use: Looker Studio is a user-friendly platform that makes it easy to share data.
+01:24
+Users can create and share dashboards and reports with others, and they can also embed them in websites and applications.
+01:31
+Flexibility: Looker Studio offers various features that let you customize the data sharing experiences.
+01:38
+For example, you can control who has access to data, and you can also set permissions for different types of data.
+01:44
+And lastly, security: Looker Studio offers security features that help to protect data, such as encryption and access control.
+01:52
+However, Looker Studio is overall a less powerful platform than Looker, and does not offer the full set of features that Looker has.
+01:59
+For example, Looker Studio does not support advanced data modeling or machine learning.
+02:04
+Looker Studio also does not integrate with as many data sources as Looker.
+02:08
+The lack of integrations can make it difficult to share data from various sources.
+02:12
+Ultimately, the best platform for data sharing depends on the specific needs of the organization.
+02:18
+Looker is a good choice for organizations that need a powerful and scalable platform for data sharing.
+02:24
+Looker Studio is a good choice for organizations that are in search of a user-friendly platform.
+02:30
+Now that you understand the benefits and drawbacks of data sharing with Looker and Looker Studio, let’s examine how to share data in Looker.
+02:38
+This is often referred to as a “data delivery.”
+02:41
+This Explore displays the results of a query.
+02:44
+From the Settings menu, you can share your data-driven insights in a few different ways.
+02:47
+First, you can save it as a report, called a Look, or to a dashboard, displaying several reports.
+02:54
+Alternatively, to export data on a one-time basis, you can download or send it.
+03:00
+Downloading extracts the data to your own computer.
+03:03
+Looker supports downloading in different file formats, including a CSV, a zip file of one or more CSVs, a PDF, or a PNG.
+03:12
+Sending lets you deliver the data somewhere else.
+03:15
+The most popular destination is email; for example, you could email the dashboard to yourself and your manager.
+03:22
+To send the data more than once, create a schedule, and define how often the report is sent to others.
+03:28
+Scheduling is basically the same as sending, except with a delivery frequency such as daily or weekly.
+03:34
+This is useful if you want to have a spreadsheet of the Look’s data automatically delivered to your inbox, say every Friday afternoon at the end of your work week.
+03:42
+Finally, to send others the most recent data, you can simply click Share, then copy the URL, and send it to the people who need to see it.
+03:51
+With the right permissions, those individuals can view the data.
+03:54
+Next, let’s transition to data sharing in Looker Studio.
+03:58
+Looker Studio is built on top of Google Drive, so you can share your reports and data source the same way you share docs, spreadsheets, and slides.
+04:06
+Just like with Google Drive, users are given edit or view permission on the shared data.
+04:12
+You can share a report in Looker studio from the Looker Studio home page or from the report itself.
+04:19
+From the report, in addition to sharing, you can schedule a delivery, get a link to the report, or download it.
+04:25
+Sharing in Looker Studio is very similar to Google Drive.
+04:28
+You can choose whether you want recipients to be able to view or edit the report.
+04:34
+Simply click Send to share the report.
+04:37
+Data can be visualized and shared from both Looker and Looker Studio.
+04:41
+What’s right for you and your team depends on the specific needs of your organization.
+
+
+###########################The Looker platform
+
+Welcome to “What is Looker?”, a lesson in the “The Looker platform” module.
+00:05
+Let us discuss what the Looker platform is and how it empowers people who collect and leverage data.
+00:13
+Let us start at the beginning.
+00:14
+Specifically, Looker is a powerful tool that helps you… Access and review the data your company collects.
+00:22
+Get your questions answered as you have them.
+00:25
+Stay up to date with the status of your business.
+00:28
+And use data in your daily decisions instead of waiting to get a new report.
+00:34
+To consider how Looker can support your data workflows, let’s examine the overall data analysis process and the role of Looker in this process.
+00:44
+When working with data, it’s important to have clear objectives.
+00:49
+We suggest a data analysis process that includes the following components: First, define questions.
+00:57
+Identify what questions need to be answered using your data.
+01:01
+Next, identify required data.
+01:03
+Determine the specific dimensions and measures you will need to answer those questions.
+01:09
+Third, analyze data.
+01:12
+Explore the dimension and/or measure relationships via tables and visualizations.
+01:18
+This exploration of your data should empower you to take some kind of action or make some kind of decision with regard to your work.
+01:26
+Finally, interpret the results.
+01:28
+Glean actionable insights from your analyzed data.
+01:32
+Looker can support you throughout this process.
+01:35
+For example, you can explore your data in Looker to help you define questions and identify necessary datasets.
+01:43
+Then, you can use Looker to analyze and visualize data to answer your questions.
+01:48
+Last, you can share visualizations and dashboards with your stakeholders to facilitate discussion on the results and identify next steps.
+01:58
+Independent of the datasets used, this data analysis process is transferable and can provide a useful framework for thinking about how Looker can be integrated into your existing workflows.
+
+##################################################LOOKER
+Looker is an enterprise platform for data experiences.
+00:04
+Let’s review how to navigate the Looker platform and how you can use it to explore your organization’s data.
+00:13
+Looker is a browser-based cloud application, which means you access it by opening an internet browser like Chrome or Firefox, going to a URL, and logging in.
+00:24
+For example, the URL for a company’s Looker instance might be companyname.looker.com.
+00:30
+Typically, you can log in to an instance with an email and password combination, though your company might have single sign-on enabled.
+00:40
+In that case, you would click on an “Authenticate” button to get in, without the need to remember or store separate credentials.
+00:49
+When you first log in to the Looker platform, your home page may vary depending on what your company’s Looker administrator has configured.
+00:59
+In this example instance, we are seeing the Shared folders.
+01:03
+Folders in Looker are where content lives, just as files in your computer or Google Drive are stored in folders.
+01:11
+“Content” in Looker terminology refers to Looks and dashboards.
+01:16
+Looks are standalone reports or visualizations, while dashboards contain more than one visualization.
+01:22
+We’ll dive deeper into all this as we explore this example Looker instance.
+01:28
+Let’s review the navigation options available to different types of users in Looker.
+01:35
+First, the left-side panel provides the content navigation options for users that have been added to the
+01:40
+Looker instance as data viewers, which are users who need to find existing information quickly and easily.
+01:48
+Data viewers do not create their own reports and visualizations.
+01:53
+Now, if you have been added as a data explorer to a Looker instance, you
+01:57
+will also see the Explore section of the left-side navigation panel of the Looker user interface.
+02:06
+As a data explorer, you use Explores to ask questions of your data and create visualizations and reports that can be shared with others such as data viewers.
+02:17
+For example, if you wanted to learn specifics about citibike trips in your city, you’d choose the Citibike Trips Explore.
+02:26
+Explores are curated by Looker developers in a proprietary templating language called LookML.
+02:33
+The Explores that you have been given access to will be listed under this Explore section.
+02:38
+The Explore section of Looker is where we’ll be spending the majority of our time in this walkthrough.
+02:44
+Next, the Develop menu is used by LookML developers to curate the Explores that are accessible to data explorers via the Explore section.
+02:55
+Within the Develop environment, developers can specify which fields are available in each Explore, how each field appears, and the logic or behavior for each field.
+03:07
+Developers can use the toggle button at the bottom left-side of the user interface to enter
+03:12
+Development Mode to make and test changes to LookML code before sending the changes to production.
+03:20
+At your organization, you may not see a Develop menu if that is not part of your role.
+03:26
+We will not review the options in the Develop environment in this walkthrough, as we will work with Explores that have already been created by LookML developers.
+03:37
+Finally, Looker administrators use the Admin menu to configure the users, permissions, and other settings for the Looker instance such as database connections.
+03:47
+Again, in your organization’s Looker instance, you may not see an Admin menu if that is not part of your role.
+03:55
+We will not be using the options in the Admin menu in this walkthrough either.
+04:00
+In this walkthrough, we will focus on resources available through the Shared folders and Explore
+04:06
+menus, which provide the key options for data explorers to access, analyze, visualize, and share data.
+04:15
+From the left-side navigation panel of the Looker user interface, you can access your recent Looker content browsing history in Recently Viewed.
+04:24
+This might be useful if you need to access a report from a day or
+04:27
+two ago, but can’t remember what it’s called or aren’t sure where to look for it.
+04:33
+When you do find something that you want to save for future reference, you can add it as a favorite—and then access your list of Favorites from here.
+04:42
+This section will contain all of your favorited dashboards and Looks.
+04:48
+A useful feature that you can toggle is the menu icon in the top left corner of the page to collapse or expand the left-side navigation panel anytime.
+04:59
+Moving on, Boards serve as a useful way of organizing and curating content, such as saving multiple Looks and dashboards onto one board that you can share with others.
+05:10
+Finally, if your Looker administrator has installed any applications or Blocks (which are pre-built data models from the Looker Marketplace), they would also show up in the left-side navigation panel.
+05:24
+Applications are not in the scope of this walkthrough.
+05:27
+Each user has a personal folder with their name on it; in the current view, it is labeled as My folder.
+05:34
+For you as a Looker user, this is your own scratch space for works in progress,
+05:38
+as well as a storage space for content that is only meaningful to you or your role.
+05:45
+Finally, expanding the Folders menu allows you to see additional folders beyond the Shared folders.
+05:52
+For example, you can go to the People folder under All folders to see other users’ personal folders.
+05:59
+Now, in the top right corner, you’ll see five (5) icons: The book being read leads to specific Looker education and in-application tutorials.
+06:10
+The magnifying glass allows you to search across the Looker instance by keyword and also links you back to Looker Connect for learning assistance.
+06:19
+The Looker Marketplace is where you can find applications and tools to get more out of your data.
+06:26
+The help icon provides links to chat support, docs, a user guide, and more.
+06:32
+And the user icon is where you’ll find access to information associated with your Looker account.
+06:38
+Let’s shift our focus to the Shared folders page, and explore folders and content.
+06:46
+Folders contain Looks and dashboards for specific groups of people.
+06:50
+You can copy, move, or save Looks and dashboards to a folder.
+06:55
+Folders can also contain sub-folders.
+06:59
+The Dashboards section shows various pieces of data in one location, like the Business Pulse dashboard, for example.
+07:06
+Each section of a dashboard is referred to as a single visualization or tile.
+07:12
+Okay, let’s examine a dashboard.
+07:16
+In our ecommerce company, we want to see how business is going at our company, so we can click
+07:21
+on the example “Business Pulse ‘21” dashboard. Dashboards in business intelligence show you various pieces of information about some overall
+07:31
+topic or domain, similar to how a dashboard on a car shows you various aspects of your car’s performance: how
+07:37
+quickly you are going, how much gas you have left in the tank, whether your headlights are on, and so
+07:44
+on. So in dashboards like “Business Pulse ‘21” you can see some key metrics that a typical ecommerce company
+07:52
+would care about: the number of users, average amount they spend per order, average amount each spends in their lifetime,
+07:59
+number of orders so far this year, and how that compares to the same point in time last year. We
+08:07
+call these single-value visualizations. Scrolling down the dashboard, you can see some other visualization types Looker supports out of the
+08:17
+box including area and line charts, maps, tables, donut multiples, and column charts. Now let’s say you work in
+08:26
+Marketing, and you want to see some more information about the average spender per user in 2018, maybe because you
+08:33
+want to understand more about why they’re spending as much as they are, and also seek opportunities to connect them
+08:41
+with more products they might want to purchase. In Looker, you can click on any visualization to “drill down,” meaning
+08:47
+you can see a more detailed breakdown of the data. Clicking on the number for Average Spender Per User shows
+08:57
+you details. In this case, we’re starting at a high-level with just the Order IDs for those purchases. But, what
+09:04
+if you want to know more about these customers, like their ages and locations? If you have permission to access
+09:11
+the underlying data, you will usually find an option to Explore or Explore from Here to drill down into additional
+09:21
+information. Clicking on this option takes you out of the dashboard and into a separate interface called the Explore.
+09:29
+Yes, this is a different part of Looker. From this point on, you can work with the underlying data through
+09:35
+the Explore without affecting the "Business Pulse ‘21" dashboard that you were just viewing. We’ve mentioned Explores a few times,
+09:43
+so you may be wondering what exactly is an Explore? Well, an Explore is a report-builder interface, as well as
+09:50
+a portal to ask questions of your data. To the left of the screen is the field picker. Fields
+10:00
+are bundled in these expand-collapse menus called views. Each view is a related concept. Since you are in the Order
+10:08
+Items Explore, you have a view for order information, such as when an order was created, its ID, its status,
+10:15
+and so on. However, orders do not exist in a vacuum. They are ordered by people, or users. The goods
+10:23
+come from inventories. The goods have product information such as brand and category. And they come from distribution centers.
+10:33
+As you explore order data or assemble a report about orders, you may need to include fields from some or
+10:39
+all of these other views. That is why they are all offered together in this Order Items Explore. Let’s expand
+10:47
+the Users view. Each view has dimensions at the top, which are attributes of the data, and measures at the
+10:55
+bottom, which are aggregations of the data attributes. For now, let’s continue our narrative as a marketer looking for those
+11:03
+additional opportunities to connect customers with products they will love.. Maybe you’d like to view average spend by user by
+11:11
+product brand; you could filter on Brand and make it one of your company’s leading brands, Brand A. After adding,
+11:19
+removing, or modifying fields in the Explore, you always need to click the Run button in the top right corner.
+11:27
+Just like that, you have asked a question of the data—What is the average spend by user for Brand A?
+11:33
+—and received your results.
+11:36
+But how do you share this view of your data with others?
+11:40
+If you click on the gear menu next to the Run button in the higher
+11:43
+right-hand corner of the application, you can save and share this new data-driven insight a few
+11:50
+different ways: From the Save expander menu, you can choose to save it to either
+11:54
+a new or existing dashboard (to which you have previous access), or to a new Look.
+12:01
+You could also open this data in Looker Studio, for more advanced visualization design.
+12:07
+If you just want to share this data as is, you can choose to Send it one time.
+12:12
+However, if you wanted to send data more than once, you can create a schedule for that and define how often that occurs.
+12:20
+Or… you could even just share the URL for the Explore as you see it now for others to work with.
+12:28
+Back on the Shared folders page, you can also see a list of available Looks.
+12:33
+Unlike a dashboard, a Look is a single report.
+12:38
+For example, a Look called Yearly Revenue is a standalone report of yearly revenue for 2018 to 2021 displayed in a single visualization.
+12:48
+Now, after this brief overview of the Looker user interface, we hope that you are excited to explore Looker some more to analyze and visualize your data!
+
+
+##########################################LOOKER PLATFORM
+
+Now, a common challenge that organizations face is that people struggle to find relevant content that already exists, so they make their own, causing duplicates and confusion.
+00:12
+To help you address this challenge, Looker provides many ways to organize content to make it more
+00:17
+discoverable to others at your organization, including the ability to create and share folders within your Looker instance.
+00:26
+To see the organizational structure of folders in your Looker instance, you can expand the Folders menu on the left-side navigation panel of the Looker user interface.
+00:37
+Under Folders, you will typically see Shared folders (which contains all folders shared across an organization), My folder (which
+00:44
+is your personal folder), and All folders (which shows all folders that you have access to in your Looker instance).
+00:53
+Now, depending on the settings configured by your Looker administrator, it is common for the Shared folders page to
+01:00
+be set as the home page for users (as shown in this example), but it doesn’t have to be.
+01:07
+All shared folders that are accessible to you will appear at the top of the Shared folders page under the header called Folders.
+01:15
+Of course, if you have been granted the permission to create new folders in your Looker instance, you can create
+01:21
+a new shared folder by clicking on New button in the top right-hand corner next to the gear menu icon.
+01:29
+A new window will open for you to name the new folder.
+01:34
+The new shared folder will be visible to all users within your Looker instance that can access items within Shared folders.
+01:41
+A best practice when creating a new shared folder is try to ensure the overall folder structure remains clear and intuitive.
+01:51
+In this example, there is a folder for each business team or unit, so if you
+01:54
+need to know more about Professional Services’ current projects, it is clear where you need to go.
+02:02
+Of course, the appropriate folder names and structure will differ by organization, but the objective of promoting discoverability and ease of use is key for all organizations.
+02:14
+Remember, the goal of the shared folder is to make the content stored there as easy to find and use as possible.
+02:22
+Be sure to take a moment to review the existing Shared folders structure as you decide when and where to create new folders and their appropriate names.
+02:32
+The next folder type under Folders is labeled My folder.
+02:37
+In Looker, all users are provided with their own personal folder as a scratch location to work with content.
+02:45
+Within your My folder, you will see items that you have created and stored in
+02:48
+your personal folder, including Looks and dashboards, as well as subfolders that you may have created.
+02:56
+While your personal folder is intended to be your own space for works in progress, and other items that you may not
+03:02
+need to share, other users within a Looker instance can be granted access to your personal folder, if needed, by Looker administrators.
+03:13
+Just like in the shared folders, you can click on New within My folder to create a new folder, if you have the permission to do so.
+03:21
+Again, a new window will open for you to name the new folder.
+03:26
+Last, the option for the drop-down People folder list is useful to easily and quickly see all of the folders that you have access to within your Looker instance.
+03:37
+So, in summary, with these various folder options, Looker makes it easy for you to
+03:42
+manage your content, so that it is readily discoverable and usable by others at your organization.
+03:50
+Have fun exploring the folders in your Looker instance!
+
+
+############################Data analysis building blocks
+Dimensions are attributes or characteristics of your data.
+00:04
+Specifically, each column in a database table is a dimension in Looker.
+00:11
+For example, this is a basic 12-row dataset that describes the fruit basket in the image on the left.
+00:18
+Each piece of fruit is represented as a row in the table, with each column describing a different attribute or aspect of the fruit.
+00:27
+Each fruit has a type and a color, either is or is not round, and has a price per pound, weight, and unit price.
+00:35
+In Looker, all of these columns are dimensions.
+00:39
+Using this dataset, you can ask a question like, “What types of fruit are in the basket?”
+00:46
+What is the dimension you need here?
+00:48
+Fruit Type!
+00:49
+When you select a dimension in Looker, only the unique possible values are displayed.
+00:55
+As such, the Fruit Type dimension returns 5 rows for the 12 fruits: one each for oranges, apples, bananas, lemons, and limes.
+01:05
+Even though you can see in the basket there are 3 lemons, 2 bananas, and
+01:09
+so on, you don’t get multiple rows for them; you have only one row for each.
+01:16
+Now, you may also want to know, “What colors of fruit are in the basket?”
+01:22
+This would require the Color dimension in Looker.
+01:25
+Again, only the unique possible values are returned.
+01:30
+Instead of getting 12 rows of data, you only get 4—one for each for yellow, red, orange, and green.
+01:37
+Okay, but what if you want to know the combinations of fruit types and colors in the fruit basket?
+01:45
+Now this would require choosing two dimensions in Looker.
+01:49
+Notice that you now have 6 rows.
+01:52
+Selecting two or more dimensions returns all unique combinations of the values.
+01:57
+For example, the “apple” type is displayed twice, once for the red apples and again for the green.
+02:04
+Be aware that selecting multiple dimensions may result in more rows or different groupings than you may have initially expected.
+02:13
+In analytical queries, the dimensions are grouped by the different unique ways in which they can be combined, such as both fruit type and color.
+02:22
+A different example might be a reporting of metrics by different cities.
+02:27
+In this case, selecting only the city dimension may not give you what you want, as
+02:31
+all cities with the same name would group together, regardless of their state, province, or territory.
+02:38
+To separate the cities with the same name, you would need to add the state, province, or territory, and you will then get the individual cities broken out as expected.
+02:50
+In summary, dimensions help you to identify and select data attributes that you need to answer your questions in Looker.
+02:58
+Each column in a database table is a dimension in Looker, and you can combine dimensions to return all of the unique combinations of the values.
+
+#########################Data analysis building blocks
+So, what are measures, anyway?
+00:03
+Measures are calculations performed across multiple rows of data.
+00:07
+As such, measures are aggregates of data attributes, or dimensions.
+00:13
+In summary, dimensions help you to identify and select data attributes that you need to answer your questions in Looker.
+00:21
+Each column in a database table is a dimension in Looker, and you can combine dimensions to return all of the unique combinations of the values.
+00:31
+Now, one question you might have is “How many pieces of fruit are in the basket?”
+00:37
+Any time you have a question like “how many,” you probably want to look for a measure with the word Count or Number in it.
+00:46
+In this case, you need the Count measure, which tells you that the basket has 12 pieces of fruit.
+00:53
+Another question might be “How much does the basket of fruit weigh?”
+00:57
+Well, in this case, you want to know the sum or total of all these fruits’ weights, without the basket.
+01:05
+An existing measure in the dataset might be called something like Total Weight, which aggregates the weights of all of individual fruit in the dataset.
+01:15
+In summary, as highlighted in these examples, measures are useful for aggregating dimensions (or data attributes),
+01:20
+so that you can easily calculate values such as count, sum, or even averages across your data.
+
+###################################################Data analysis building blocks
+In Looker, filters are ways to reduce or narrow down the results returned based on specific criteria.
+00:08
+In this way, filters allow you to hone in on a subset of your data based on desired characteristics.
+00:14
+A key feature of filters is that they don’t delete anything from the database; they’re only applied to the data that Looker displays on your screen.
+00:24
+For example, in this basic 12-row dataset, each piece of fruit is represented as a row in
+00:30
+the table, with each column describing a different attribute of the fruit, such as type and color.
+00:37
+How might you want to filter this fruit basket?
+00:40
+Well, maybe you want to see only fruits that are round.
+00:44
+You can apply a filter on the Is Round dimension, and set it equal to “yes”.
+00:49
+This is called applying a dimension filter, and what Looker does behind the scenes is to
+00:54
+figure out which rows of data need to be included or excluded right from the start.
+01:01
+Now, using this filter, you can ask a question such as, “How many pieces of each fruit type are there if only round fruits are included?”
+01:12
+Behind the scenes, your database first skips over or ignores the fruits that aren’t round, since they don’t meet the criterion of our dimension filter.
+01:21
+Then, Looker takes what’s left—apples and oranges—and performs the aggregation, so we get 3 apples and 2 oranges.
+01:30
+Of course, you may also want to know, “How many pieces of each fruit type are in the basket if I only include red and orange fruits?”
+01:39
+To answer this question, you can apply a filter on the Color dimension and set it equal to “orange” or “red”.
+01:47
+So you get 2 oranges and 2 red apples.
+01:51
+This demonstrates that you can make a filter equal to more than one value.
+01:57
+In summary, you can use dimension filters to select only the data you want to see in your results, such as round fruit only, without affecting the underlying data tables.
+02:08
+You can also select more than value for a particular dimension filter, such as fruit that are either orange or red.
+02:16
+Based on the values you provide in the dimension filter, Looker knows which data rows
+02:20
+to include or exclude in the results, making it easy to get the results you want.
+
+#####################################################################Data analysis building blocks
+In Looker, you can filter on both dimensions and measures to select only the data you want to see or include in your results.
+00:09
+In either case, the underlying data is not affected, and Looker knows which data to include or exclude based on the filter.
+00:18
+Specifically, Looker will ignore any rows that do not meet the filters provided before returning the results.
+00:25
+For example, in this basic 12-row dataset, each piece of fruit is represented as a row in
+00:31
+the table, with each column describing a different attribute of the fruit, such as type and color.
+00:38
+Notice that there are three apples in this dataset: 2 red and 1 green.
+00:44
+If a dimension such as color is used a filter, then Looker will apply that filter first and then aggregate data based on the measure that has been selected.
+00:55
+In this example filter, only fruit that are orange or red are selected, which means that the green apple in the dataset is not returned in the results.
+01:05
+For this reason, the number of apples has decreased from 3 to 2.
+01:09
+Again, this is because the dimension filter removed one apple that was green.
+01:14
+But, what if you want to know, “Which types of fruit have exactly two pieces in the basket?”
+01:21
+In this case, you would need to apply a filter on the Count measure, setting it to equal 2.
+01:27
+Notice that in this dataset, only the banana, lime, and orange fruit types have a count of two.
+01:34
+Both apple and lemon have a count of three, so they should not be returned as part of the results.
+01:42
+With this example, you can see that the key difference between filtering dimensions versus measures lies in when Looker decides to exclude data.
+01:51
+With dimension filters, Looker excludes the rows that do not meet the filter at the very beginning, such as excluding fruit that are not red or orange.
+02:01
+With measure filters, Looker first gets all the possible rows and calculates all of the potential aggregations.
+02:08
+Then, Looker discards the undesired results at the end, before returning the results.
+02:15
+In this specific example, Looker did not return the fruit types that are apple or lemon
+02:19
+because they both have a count of three, not two as specified in the measure filter.
+02:25
+Let’s consider another example.
+02:28
+Maybe you want to know “Which types of fruit have an average price that is less than $0.50?”
+02:35
+First, you need to set a filter on Average Price being less than 0.5.
+02:42
+Looker gets all the unique possible fruit types and calculates the average price for each.
+02:48
+Then, it removes the results with an average price of fifty cents or more as
+02:53
+the last step, so you are left with only the results that meet the filter logic.
+03:00
+In summary, you can filter on either dimensions or measures in Looker to select only the data that you want to see or include in the results.
+03:10
+When you use a dimension filter, Looker will exclude the rows that do not meet the criteria at the very beginning of the analysis.
+03:18
+When you use a measure filter, Looker first calculates all of the potential aggregations and then excludes the
+03:24
+results that do not meet the desired criteria at the end of the analysis, before returning the results.
+03:33
+In either case, Looker handles the inclusion and exclusion of data for you and returns only the data results that you want.
+
+##########################################Data analysis building blocks
+
+In this example, we combine dimensions and measures to start answering more complex questions.
+00:06
+Specifically, we’ll work with the Users data in the Order Items Explore to identify the top 10 cities that have the most users.
+00:15
+Then, we’ll display the results as a column chart.
+00:19
+To begin, to access the Users data, we will click on the Explore section in the left-side navigation panel, and locate Order Items under the E-Commerce heading.
+00:31
+“Total number” suggests that you probably want a count, so first expand the Order Items view to look for a count measure of ordered items.
+00:42
+Click on the Order Item Count measure.
+00:44
+“Each month” means you want a monthly report, so you need to choose one of the date dimension groups.
+00:51
+Since you’re looking for items “sold,” Created Date would be best, as an order is “created” in
+00:56
+the system when the transaction is made—in other words, when the items are sold to a customer.
+01:03
+Now, expand Created Date and click on the Month dimension in the Created Date group to get your monthly report.
+01:12
+Recall that you only want to look at the year 2019, so you can click on the Filter button next to Year to specify this.
+01:20
+Set the operator to “is in the year”, and type 2019 in the text box.
+01:26
+Then, click Run.
+01:28
+Now, open the visualization pane, and make sure the type is set to line chart.
+01:34
+Next, change the style of the data points within the line chart.
+01:39
+In the Series tab of the visualization settings, you can choose a Point Style of “None”, “Filled”, or “Outline”.
+01:47
+This examples uses Filled.
+01:49
+Finally, you can add in a reference line that shows the average profit across the year.
+01:55
+In the “Y” tab of the visualization settings, scroll down to the bottom, and click on the Add Reference Line button.
+02:03
+Then, set the type to Line and the value to Average (Mean).
+02:09
+The final line chart is now ready and displays the total number of items sold each month in 2019 with the yearly average as a reference line.
+
+###########################################Working with Looker content
+Throughout your data analysis and visualization workflows in Looker, you will likely work with Looks that you have already made or that were made by others.
+00:10
+One of the most common and powerful ways to modify an existing Look is to
+00:14
+apply filters to it, so that users can limit the results returned based on specified criteria.
+00:22
+To apply filters to a Look, you need to first enter Edit mode in the Look by clicking on the Edit button in the top right of the screen.
+00:31
+Now that you are in edit mode, you can add filters in the same way that you apply filters
+00:36
+in an Explore, by using the field picker in the left-side panel to choose filters from dimensions and measures.
+00:43
+To apply a filter, click the inverted pyramid icon for the desired dimension or measure to activate the filter.
+00:51
+This example adds a filter to the total revenue data using the Brand dimension from the Products view.
+00:58
+This filter will allow users to see only the revenue by month for this one specific brand.
+01:04
+Next, you must decide whether to pre-populate the filter field.
+01:10
+Keeping it empty is a perfectly valid choice, as it allows users of the Look to choose if and how to apply the filter.
+01:18
+This example pre-populates the filter with one filter variable based on a single brand called Example Brand 1.
+01:26
+After you have chosen the filter logic and variables, click on the Run button next to
+01:32
+the gear menu icon in the top right corner of the screen to refresh the data.
+01:37
+By refreshing the data presented in the Look, you can ensure the filter worked as you intended, or modify the filter as needed.
+01:46
+At this point, you can add additional filters or adjust any other component of the Look.
+01:52
+We recommend that you make one change at a time and then refresh the Look to validate your results before making your next change.
+02:01
+This way, you can check that the Look reflects your desired outcomes each time before applying more changes.
+02:07
+Last, all that is left to do is to save the changes to your Look by
+02:11
+clicking the Save button in the top right corner of the screen, in the blue bar.
+02:17
+And here is the new filter saved and integrated thoughtfully into your Look.
+
+###############################Working with Looker content
+Working with dashboards to look for insights, trends and to answer data-related questions is very powerful, and Looker makes it easy.
+00:10
+Unlike a Look, which focuses on a single visualization to answer a single data-related question, dashboards in Looker are designed to contain multiple visualizations, to answer multiple questions.
+00:24
+It can provide both deep and broad visibility into your data, empowering you to very easily surface problems, insights and opportunities in your business.
+00:35
+Any end user, including data viewers, can work with existing dashboards to which they’ve been granted access for
+00:41
+data analysis, but only data explorers can use Explores to create their own dashboards, or dashboards for others.
+00:51
+But what about working with an already-created dashboard?
+00:55
+Editing dashboards to add new content or revise the existing layout is also very easy.
+01:02
+Start by clicking on the three vertical dots icon for Dashboard Actions at the top right of the page, and select Edit Dashboard.
+01:11
+In edit mode, you’ll see options to add tiles and filters to the dashboard, as well as modify its settings to configure how the dashboard runs and refreshes.
+01:22
+To add new content to a dashboard, you can click on Add Tile to add a new visualization
+01:28
+(of which there are many types), a text tile for instructions or additional context, or even a button.
+01:37
+Selecting a new visualization tile will display the Choose an Explore window for you to build the visualization, which you can then save to the dashboard.
+01:47
+Selecting a new text tile will open a popup for you to write your desired text.
+01:52
+Text tiles can be useful as section dividers or commentary for your dashboard viewers.
+01:59
+You can also choose to write in plain text or in the Markdown language to use more advanced formatting features.
+02:07
+You can even include a button in your dashboards, allowing you to provide hyperlinks to related internal project content, or external resources.
+02:17
+Options for styling your new button exist as well!
+02:20
+Once in edit mode, you can also rearrange the tiles by clicking on the top left corner of a tile and dragging it around to the desired location.
+02:30
+You can also resize a tile by clicking on the bottom right corner and dragging to the desired size.
+02:37
+Last, when you are done editing your dashboard, don’t forget to click Save to save your changes!
+
+###########################Working with Looker content
+
+In Looker, dashboard filters, sometimes called global dashboard filters, behave similarly to dimension and measure filters in that they allow users to limit the results based on a specified criteria.
+00:15
+Let us begin with this dashboard, New York Taxi.
+00:18
+It’s a dashboard containing no filters.
+00:21
+So, how can we add them?
+00:24
+Let us start by clicking on the three vertical dots icon for Dashboard Actions at the top right of the page, and select Edit Dashboard.
+00:34
+Then, click on Filters in the top menu bar, followed by Add Filter.
+00:39
+Next, you need to select the dimension and/or measure that you want to use as the filter, such as Passenger Count from the Nyc Taxi Explore.
+00:50
+You can also use the search bar to find the field name you’d like to filter on, such as searching for other filter options.
+00:57
+After you have chosen a dimension or measure, you will be redirected to the Settings
+01:01
+tab of the filter, where you need to provide a few more details for the filter.
+01:07
+Specifically, you need to give your filter a name or title, choose how the user interacts with the filter, determine
+01:13
+the layout and whether they can select single or multiple values, and if desired, configure a default value for the filter.
+01:23
+You can also expand the Additional options to require a filter value or select other filters to be updated when this filter changes.
+01:33
+This last option is useful if you want what we call a “faceted filter.”
+01:38
+A common example would be if you have one filter for State and one for City, and you want to make
+01:43
+sure that when someone selects a state the list of available cities updates to offer only the cities in the selected state.
+01:52
+On the Tiles To Update tab, you can identify the tiles that you want to update with the new filter.
+01:58
+Looker even starts you off with some suggested tiles.
+02:02
+In this example, Looker identifies any tiles that use data from the Nyc Taxi view
+02:07
+in the Nyc Taxi Explore, so the new filter can automatically be applied to those tiles.
+02:16
+An important thing to keep in mind about dashboards is that you can add tiles from different Explores—in fact, that flexibility is what makes them so powerful and valuable.
+02:28
+So sometimes, you may find that only some, but not all, of the tiles get automatically identified
+02:33
+to be populated with your new filter because the other tiles aren’t based on the same Explore.
+02:40
+Sometimes you might not want filters to apply to all tiles.
+02:44
+Again, it’s a question of what you’re trying to achieve with the filter; it’s more about design than any scientific rule.
+02:52
+For example, imagine that you have a tile that shows passengers per ride for the current year.
+02:59
+If someone else were to change the Passenger Count filter value to greater than 20, then the tile would
+03:04
+only display 0 results for the entire year, since taxis do not carry that many people at one time.
+03:13
+Any time you have a tile like this that is supposed to show data for all time, all regions, all something—you
+03:18
+might want to head back to the Tiles To Update tab and select the Field to Filter option to “Do not filter”.
+03:27
+Finally, when you are adding filters to your dashboard, be sure to click Save to save your changes!
+
+#####################################Working with Looker content
+Boards are a great way to centralize relevant content that lives in different folders within your organization’s Looker instance.
+00:08
+The great thing about boards is that they simply link to a content item such as a Look or dashboard, which remains in its original location.
+00:17
+So boards do not store the actual content, and the original content remains unaffected.
+00:24
+With boards, you also don’t have to worry about permissions or data privacy because users still
+00:29
+need access to the folder containing the item, in order to access that content from a board.
+00:36
+For example, the Favorites menu shows all your own bookmarks, but creating a board allows you to share those bookmarks with other users and teams.
+00:46
+Any Looks and dashboards added to the board will still live in their original folders; the
+00:51
+board merely links to them and serves as a centralized page to easily find the content.
+00:57
+In Looker, creating your own boards is very easy.
+01:01
+First, on the Looker home page, click on the plus sign (+) icon next to Boards in the left-side navigation panel, and select Create a new board.
+01:11
+Notice that you also see an option to browse all boards, which we will discuss later in this section.
+01:17
+Next, give your new board a clear, descriptive name.
+01:21
+For example, if you are creating a board to contain several business analysis related items, then an appropriate name could be Business Analysis.
+01:31
+Now, once you have created your new board, you can configure it as little or as much as you like.
+01:38
+You can add Looks and dashboards by clicking on the “Add content (+) .
+01:42
+A drop down menu will appear giving you the choice of adding Saved content (in
+01:48
+the form of Looks and dashboards), or a URL link for other content, including pre-configured Explores.
+01:56
+Looker also provides the ability to group content by adding new sections, and you can write a description for
+02:02
+the entire board itself, as well as for each individual section, to aid others in using the board efficiently.
+02:11
+If you choose the Saved content menu option, a new window will appear where you can choose the Looks and dashboards you want to add to your new board.
+02:20
+How you choose to group your content is entirely up to you: by team, by customer, by project, by product, by data question, and more.
+02:30
+Once you have created new sections, you can continue adding content to a section by hovering over the section and clicking on the blue plus sign (+) for Add Content.
+02:41
+Looker also makes it easy to pin a Look or dashboard to a board when you are viewing the content in its original location.
+02:49
+For example, from a Look, click on the gear menu at the top right of the screen, and choose Add to a board.
+02:57
+A window will open for you to choose on which board (and section) this new Look should be pinned for easier discovery and sharing.
+03:06
+You can follow a similar process to pin a dashboard when viewing it in its original location.
+03:12
+From a dashboard, click on the three vertical dots icon for Dashboard Actions at the top right of the page, and select Add to a board.
+03:21
+You can select both the board and optionally, the section of a board for a dashboard.
+03:27
+When you are happy with your choices, select Add.
+03:31
+Looker also makes it easy to explicitly share access to your board with others.
+03:37
+Simply click on the share icon at the top right of the page, and select the users that
+03:42
+you want to access the board as well as their level of access such as view or edit.
+03:48
+Remember, boards can be for your own benefit, for people you invite, or even for your entire team or organization.
+03:56
+Don’t worry, though.
+03:58
+Even if a user is given access to the board, they cannot view a particular content item on a board if they don’t already have access to see it.
+04:08
+In addition to creating your own boards, you can also browse all boards that you have access to within your organization.
+04:16
+On the Looker home page, click on the plus sign (+) icon next to Boards in the left-side navigation panel, and select Browse all boards.
+04:25
+In the browse window, you will be shown every board to which you have access within your organization’s Looker instance.
+04:32
+Remember, though, while you may have access to a board, you may not have access to all or any of the content curated on that board.
+04:41
+To get access to the underlying content, you can reach out to your Looker administrator.
+04:47
+In summary, boards are a great way to centralize and share content that lives in different folders within your organization’s Looker instance.
+04:57
+Boards link to content such as Looks and dashboards in their original location, so the pinned
+05:03
+content is not affected by being added to a board or by user actions on a board.
+05:09
+Any previously assigned access to a content item is also maintained, so you never have to worry about users accessing content that they have not been previously given access to.
+05:21
+Given these great benefits, we hope that you take full advantage of boards in your organization’s Looker instance!
+
+#####################################Working with Looker content
+In this example, we’ll make our own board and then we’ll see how to share it with other users.
+00:06
+In the Browse menu, click on the plus (+) icon next to Boards.
+00:11
+Give it a name like Ecommerce Marketing.
+00:14
+Next, create a section called Overall business by clicking on the pencil icon next to the first New section.
+00:22
+Now we’re going to add a dashboard to this board section: the Business Pulse dashboard, by
+00:27
+clicking on the Add content area, selecting Saved content and browsing to the Business Pulse dashboard.
+00:34
+Let’s explore how you can share the board and manage other people’s access to it.
+00:40
+You can share the board with specific individuals or groups managed by your organization.
+00:46
+You can also specify the type of access that you want to provide such as view and edit access.
+00:53
+Do you think boards would be useful for your role, team, or organization?
+
+############################################Customizing Explores
+In Looker, pivots allow you to turn a selected dimension into several columns, which creates a matrix of your data similar to a pivot table in spreadsheet software.
+00:12
+This is very useful for analyzing metrics by different groupings of your data, such as getting counts for category or label in your dataset.
+00:21
+For example, from this basic 5-row dataset, you can ask something like, How many pieces of fruit do I have for each color, and is the fruit round or not?
+00:32
+While this display is adequate to see that you have 5 fruits that are yellow and not round, 2 that are orange and
+00:38
+round, etc, it’s not easy to compare all the colors against each other, or just the ones that are round against each other.
+00:48
+Applying a pivot to the Is Round dimension transforms the display of the data into a format that is more meaningful and easy to interpret.
+00:58
+When you pivot on a dimension, each unique possible value of that dimension becomes its own column header.
+01:05
+Any measures are then repeated under each column header.
+01:09
+In this case, you have one column for Is Round being “yes” and another for “no”.
+01:15
+It becomes much easier to compare just the counts of round fruit across colors, and the counts of not-round fruit.
+01:23
+It also shows you gaps in your data, where you don’t have any round or not-round fruit for a particular color.
+01:31
+In summary, pivots allow you to create and display a matrix of your data, similar to a pivot table in spreadsheet software.
+01:40
+Specifically, pivots turn a selected dimension into several columns and are applied only to the visual display of your results.
+01:49
+With pivots, Looker allows you to regroup your data, so that you can easily compare results by different groupings and identify potential gaps, all while leaving your underlying data unaffected.
+
+#########################################Customizing Explores
+Whenever you have a question involving one dimension “by” another dimension, that’s a clue that a pivot might come in handy.
+00:07
+Let’s run through a pivot example to find the total revenue from each product category by product department, and then display the results as a stacked bar chart.
+00:18
+First, from the Explore section, locate Order Items under the E-Commerce heading.
+00:24
+Next, select the Total Revenue measure from the Order Items view.
+00:29
+Next, you need the product category.
+00:32
+Where is that again?
+00:33
+Don’t forget, any time you feel overwhelmed by all the views and fields, you can use the field picker’s
+00:39
+search bar to surface keywords: there’s Product Category in the Inventory Items view and Category in the Products view.
+00:49
+Go with Product Category in the Inventory Items view.
+00:53
+You may see multiple options while searching in real Explores in your company’s Looker instance as well.
+01:00
+Depending on how your data is structured, the same field may appear under multiple views.
+01:05
+We recommend trying both if you’re worried about the accuracy of the results—and, when in doubt, seek help from your company’s LookML developer team.
+01:15
+A search for “department” also yields fields under both the Inventory Items and Products views, so again, go with the one in the Inventory Items view.
+01:25
+However, you’ll want to pivot on this item, so you need to click on the Pivot button.
+01:31
+Click Run to see the results.
+01:33
+Note that if you simply clicked on the field name to add it to your result set without pivoting
+01:38
+first, you can still pivot later by clicking on the gear icon for the column header and then clicking Pivot.
+01:46
+In the the visualization pane, you can click on the bar icon to make it a column chart.
+01:52
+Overall, this visualization is a good start, but it doesn’t give a clear idea of how the various categories compare for overall revenue across both men’s and women’s departments.
+02:05
+For example, which category made more revenue from men’s and women’s products combined?
+02:10
+Thanks to the pivot, you can edit this to be a stacked bar chart by selecting Stacked under the Plot tab of the visualization settings.
+02:19
+The stacked bar chart allows you to see that there is more overall combined revenue from Jeans than for any other category.
+02:27
+And with that, the visualization of total revenue from each product category by department is now complete!
+
+###########################################Customizing Explores
+Typically, in Looker, data explorers are given access to one or more Explores predefined by LookML developers.
+00:08
+At your own company, that would likely mean your data and analytics team, data engineers, or data analysts.
+00:16
+But sometimes you’ll find you need particular logic for which they haven’t provided a dimension or measure, maybe because you have a new kind of question or use case.
+00:27
+This is when you might need a table calculation.
+00:30
+Table calculations are used to define what we call “on-the-fly metrics” because they run on your query results, instead of your whole database.
+00:39
+You’ll need to start by generating results with at least one dimension or measure, and then you can incorporate these fields into spreadsheet software-like formulas to calculate a new metric.
+00:52
+With table calculations, you can also set up a custom field that isn’t included in the set of dimensions and measures provided by your LookML developers.
+01:02
+For example, you can use a table calculation to create a new measure for percent
+01:06
+of flights cancelled from existing measures on number of flights completed and number of flights cancelled.
+01:14
+Table calculations are really cool and convenient.
+01:17
+However, because they run after the query has been set up and are written on the fly, they can introduce
+01:23
+differences across an organization, and they need to be recreated manually if they are not saved to a Look or dashboard.
+01:32
+There are a few uses cases where you should consider developing a table calculation.
+01:38
+The first is to prototype a field or query, like if you want to validate whether it’s useful enough to reuse.
+01:46
+Similarly, if you need to answer a one-off question, then a table calculation is useful.
+01:53
+If you find yourself needing the same logic repeatedly, you should work with your LookML developer team
+01:58
+to have that logic added to the data model as dimensions or measures that everybody can use.
+02:06
+Another scenario that might call for a table calculation is if you need to create something based purely on the results set and not on the overall data.
+02:15
+A specific example would be if you want to create a specific kind of visualization, like one not available
+02:22
+in your current Looker version or for which you don’t have the right types of fields in your data model.
+02:29
+In this case, you can use a table calculation to translate your data or visualization into the form you want.
+
+##################################Customizing Explores
+In Looker, table calculations provide you with the ability to define new metrics instantaneously using custom formulas.
+00:09
+With table calculations, you can prototype new metrics or create one-off visualizations from your query results,
+00:15
+without having to wait for a LookML developer to modify the options available in a particular Explore.
+00:24
+There are four basic types of table calculations in Looker: string, mathematical, logical, and date & time.
+00:32
+String functions operate on query results that are text.
+00:36
+For example, they can be used to capitalize letters and words, extract parts of a phrase, check to
+00:42
+see if a word or letter is in a phrase, or replace elements of a word or phrase.
+00:48
+In this example table, there are dimensions for Aircraft Category and Country, and a Count measure.
+00:55
+For some people, this table may not be very easy to read or understand.
+01:01
+To make the table easier to interpret, you can concatenate the values from these three fields
+01:06
+with some additional text, and create a nice, user-friendly sentence in a new field called Accident report.
+01:14
+In your final visualization, you could then hide Aircraft Category, Country, and Count, and simply
+01:20
+display the user-friendly sentence in the Accident report field that you created with a table calculation.
+01:28
+With mathematical functions in Looker, you can apply any kind of math on numeric values, such as arithmetic, averages, sums—even running totals and standard deviations.
+01:40
+In this example, the Order Amount Rounded table calculation is rounding the Amount measure to the nearest decimal with 0 places
+01:48
+(in other words, the nearest integer), while the Average Order Amount table calculation is calculating the mean of all the Amount values.
+01:59
+With logical functions, you can check one or more conditions and execute different paths of logic, depending on the value.
+02:07
+For example, if-conditions are very popular for displaying different results depending on whether our particular condition is met.
+02:16
+In this example, there is a Title dimension referring to box-office films and measures for Total Revenue and Total Budget.
+02:25
+The Profit Outcome table calculation evaluates whether the Total Revenue amount for each Title is greater than the Total Budget.
+02:33
+If it is, the displayed value is the word “Profitable”.
+02:37
+However, if Total Revenue is less than or equal to Total Budget, the displayed value is “Lost Money”.
+02:45
+Finally, date and time functions operate on datetime results and allow you to extract time periods and calculate date differences and additions.
+02:55
+You can also get the current date, time, or date and time, and create arbitrary date fields as needed.
+03:03
+In this example, there is a Created Date dimension showing when each user registered on our site.
+03:10
+The Months a Customer table calculation calculates the difference in months between a user’s Created Date and today’s date using the diff_months and now functions.
+03:21
+The Join Month table calculation extracts the month from the Created Date using extract_months and then applies logic to label the month name using an if-condition.
+03:33
+For example, if the number extracted for month is 8, then the output is “August”; if it is 9, then the output is “September”; and so on.
+03:43
+These examples demonstrate how easy it is to combine different types of functions in one table calculation.
+03:50
+In summary, table calculations allow you to create new metrics instantaneously and are incredibly useful for prototyping new metrics or creating one-off visualizations.
+04:03
+There are four main types of table calculations in Looker: string, mathematical, logical, and date & time.
+04:11
+String functions operate on text results, while mathematical functions operate on numeric results.
+04:19
+Data & time functions operate on datetime results, and logical functions can be used to check one or more conditions and execute different paths of logic, depending on the value.
+04:31
+Last, you can combine different types of functions in one table calculation to customize your results even further and achieve your desired outcomes.
+
+############################Customizing Explores
+Writing and visualizing table calculations to instantaneously create new metrics should follow very familiar logical guidelines, and therefore offer only a reasonable challenge to learn.
+00:13
+In this lesson, we will work in the Order Items Explore to determine what percentage of revenue per US
+00:19
+state is from completed orders (out of revenue from all orders for that state) in the past 1 year.
+00:27
+Then, we’ll create a map of the results.
+00:31
+Since table calculations only operate on the results of your Explore query, you first need to bring
+00:36
+in one or more dimensions or measures by selecting the fields you need to calculate the desired metric.
+00:44
+For example, imagine that you want to calculate the percent of flights cancelled over a period of time.
+00:51
+To begin, we have selected the dimension for Depart Date and the measures for flight Count and Cancelled Count, and clicking Run.
+01:01
+After you select the dimensions and measures and run the initial results, you can now create a new table calculation from the results.
+01:10
+Next to Custom Fields, click the Add button, and select Table Calculation.
+01:16
+A new popover window will appear in which to enter your formula.
+01:20
+Now, one thing to be aware of here is that because administrators must enable this feature for end users, you might not
+01:27
+have the Custom Fields view in the Explore of your organization’s Looker instance, even if you do have permission to use table calculations.
+01:38
+In that case, you would see a Calculations button at the top of the data table.
+01:43
+Assuming Custom Fields are available to you, in the table calculation popover, you will need to
+01:48
+select a calculation type, or leave the selected option for Custom expression to write ad hoc expressions.
+01:57
+Next, give your new table calculation a name such as Percent of Flights Cancelled.
+02:03
+This name will show up as the column header and in the legend of the visualization.
+02:08
+If using a custom expression for the table calculation, enter the formula you’d like to apply.
+02:14
+For example, you can calculate the percentage of cancelled flights by dividing the cancelled flight count by the overall count of flights.
+02:23
+Note that Looker strives for parity with commonly used spreadsheet software, so if you simply type the letter a, you can see all the various functions that Looker supports.
+02:34
+You can get the absolute value of a number, add time intervals to a date, concatenate multiple values, write if-conditions, and so on.
+02:44
+If you want to see the full list of supported functions and some more information about them, you can click
+02:49
+on the Help + Syntax Reference icon above the top right of the window, which takes you to our documentation.
+02:58
+An important thing for people very familiar with spreadsheet software to know is that with Looker table calculations, you do not start the formula with an equals sign.
+03:09
+That might feel a bit weird, but you’ll get used to it.
+03:12
+Next, specify the format of the results if you’d like: decimals, percent, and so on.
+03:18
+Finally, click Save to save your table calculation.
+03:23
+You will now see table calculations appear in your data table in green.
+03:28
+The values will show up right away since you have already run your query with the dimensions and measures.
+03:35
+Table calculations also get displayed in the visualization.
+03:39
+If you don’t want a specific field or table calculation in your visualization, you can click on the gear icon in the column header and select Hide from Visualization.
+03:51
+More often than not, the table calculation is the thing you actually want to visualize; it might be the foundational dimensions or
+03:58
+measures that you don’t want, such as the flight count because you want the visualization to show only the percent of cancelled flights.
+04:07
+An icon of an eye with a line crossing over it will appear to indicate that the column is hidden.
+04:14
+So, here’s how the final line chart would look if you keep the dimension and table calculation, but hide the two measures used in the table calculation formula.
+04:25
+In addition to writing custom expressions for table calculations, you can choose from some predefined options such
+04:30
+as calculating the percent of column total, percent change from a previous row, running totals, and more.
+04:39
+With options for both predefined and custom expressions, Looker gives you the power to customize your visualizations and reports as needed.
+04:49
+In summary, table calculations allow you to instantaneously create new metrics and fields, without needing to wait for a LookML developer to create them for you.
+05:00
+Enjoy using table calculations.
+05:03
+Just remember that since they run after the query has been set up and are written on the fly, they can
+05:08
+introduce differences across an organization, and they need to be recreated manually if they are not saved to a Look or dashboard.
+05:19
+For these reasons, table calculations are most useful for prototyping new metrics, answering one-off questions, or creating visualizations based purely on query results.
+05:30
+And with this knowledge, we hope you now look forward to playing around with table calculations in Looker!
+
+####################################Customizing Explores
+In this example, we will review how to write and visualize table calculations to instantaneously create new metrics.
+00:08
+We’ll work in the Order Items Explore to determine what percentage of revenue per US state is
+00:14
+from completed orders (out of revenue from all orders for that state) in the past one (1) year.
+00:21
+Then, we’ll create a map of the results.
+00:25
+Begin by opening the Order Items Explore under the E-Commerce heading.
+00:31
+From the Order Items view, select the Total Revenue and Total Revenue from Completed Orders measures.
+00:38
+Click on the Filter button next to the Date dimension in the Created Date group.
+00:43
+Then, set the Created Date filter to “is in the past” “1” “complete years”.
+00:50
+Next, in the Users view, select the State dimension.
+00:54
+Then, click on the Filter button next to the Country dimension, and set the filter to “is equal to” USA.
+01:02
+Click Run.
+01:03
+Now that you have the initial query results, you can add a table calculation from the Custom Fields section.
+01:11
+Click Add next to Custom Fields, and then select Table Calculation.
+01:16
+Use the Custom expression option and the following syntax for the expression: ${order_items.total_revenue_from_completed_orders}/${order_items.total_revenue} Next, change the format to Percent and decimals to 1.
+01:47
+Name the table calculation % Revenue from Completed Orders, and then save the table calculation.
+01:54
+Next, hide the Total Revenue measure and the Total Revenue from Completed Orders measure from the visualization by clicking on each measure’s gear menu, and selecting Hide from Visualization.
+02:07
+Last, change the visualization type to Google Maps.
+02:12
+You can also change the default color order in the legend by selecting Reverse Color Scale in
+02:17
+the Values tab of the visualization settings, so that higher values are green and lower values are red.
+02:25
+You now have a map visualization of percentage of revenue per US state from completed orders in the past 1 complete year!
+
+####################################Customizing Explores
+Percent-of-total calculations can be useful for analyzing a portfolio or market share in your data.
+00:07
+In this example, we’ll work with the Order Items Explore to create a table calculation that shows the percentage
+00:13
+of orders coming from each traffic source (such as email or search), out of the total number of orders.
+00:21
+First, from the Explore tab, locate Order Items under the E-Commerce heading.
+00:27
+Begin your analysis by getting the raw number of orders per traffic source.
+00:32
+Navigate to the Order Items view, and select the Order Count measure.
+00:36
+Next, select the Traffic Source dimension in the Users view, so that you can get order counts by traffic source.
+00:44
+How do we know the total number of orders?
+00:47
+Did you spot the Totals checkbox, next to Row Limit?
+00:51
+Select it, and click Run.
+00:53
+A Total line will appear under the five rows of data, with the number 286,183.
+01:02
+Sometimes the Total row won’t match the number if you manually add the rows above it.
+01:07
+Looker is counting unique objects, not the numbers shown in each row.
+01:12
+For example, consider an order attributed to more than one traffic source.
+01:17
+It will appear in the Order Count for each relevant source’s row, but it won’t double or triple-count in the Total row.
+01:24
+In another example, count the number of users in each month making an order.
+01:29
+It’s possible that the same user could order every month, but they would still only total as one user versus 12 different people in a single year.
+01:39
+Or, if you wanted to know the average sale price by traffic source, the Total row would show
+01:44
+the average sale price for all traffic sources, rather than a total of the average sale prices added together.
+01:51
+Now, next to Custom Fields, click Add, and select Table Calculation.
+01:58
+For calculation, choose Percent of column, and select Order Items Order Count as the source field.
+02:05
+For format, choose Percent, and select 1 for Decimals.
+02:10
+Don’t forget to give your table calculation a clear, descriptive name such as Percent of Total Order, and click Save.
+02:19
+You want the percent of each traffic source’s order count out of the total order count, so
+02:24
+you need ${order_items.order_count}, followed by a forward slash to divide by the appropriate total order count field.
+02:39
+Begin typing “order” and then select the suggestion for Order Count - Total.
+02:45
+Order Count - Total has a LookML variable that looks very similar to the order count, except it has a colon and the word “total” at the end.
+03:01
+${order_items.order_count}/${order_items.order_count:total} Don’t forget to give your table calculation a name, such as % of total order, and choose a format.
+03:22
+You can select Percent and 1 for decimals, and then click Save.
+03:26
+Next, change the visualization type to bar chart, and hide the Order Count measure by clicking on the column’s gear menu, and selecting Hide from Visualization.
+03:38
+Using the visualization settings, under Values, turn on the Value Labels to add a label for each bar.
+03:45
+Looks nice, right?
+03:47
+Using table calculations, you are able to show the percentage of orders coming from each traffic source, out of the total number of orders.
+03:56
+Since Looker provides many different visualization options, why don’t we review some others?
+04:02
+If you’d like to see the data as a pie chart instead, click on that the pie icon from the visualization menu.
+04:09
+Using the visualization settings, you can customize the labels and colors.
+04:15
+For example, you can change the individual colors or the color palette under Under Series > Collection.
+04:22
+You can also add and customize the labels.
+04:25
+Under Plot, for Value Labels, select Labels.
+04:29
+In the same menu for Plot, for Label Type, select Label - Value, and for Start Angle, type: 90.
+04:37
+And now, the pie chart of percentage of orders coming from each traffic source, out of the total number of orders, is complete.
+04:46
+You can see that with just a few simple option changes, Looker gives you the power to create multiple types of visualizations from one set of query results.
+04:55
+Enjoy exploring all of the visualization options in Looker!
