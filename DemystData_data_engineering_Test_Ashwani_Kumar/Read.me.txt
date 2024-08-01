@@ -1,0 +1,31 @@
+Data Engineering Coding Challenges
+
+Problem 1 Solution:
+
+ fixed_width_generator_to_csv_convert.py
+
+Script is designed to read  and generate a fixed-width file format and convert it into a CSV file.
+This process involves reading or generating data from a fixed-width file, where each column's data has a specific,
+predefined width, and transforming it into a CSV format with properly delimited fields. 
+The script includes functionalities for specifying column lengths and names through an external specification file.
+
+This Script using Three parameters 
+	1. Spec_file.txt: is the file containing the column specifications.
+	2. fixed_width_own.txt :  output file name for the fixed width file.
+	3.true/false : used for generating the data.true is used for generating the ramdom sample data and false for genarting the user  input data.
+	4.output.csv: output file name for the csv file.
+	5.5/100 :Numbers of data to be generated . By default 1000 is used if this parameter is not defined.
+
+Below are the sample for running the script:
+
+	python fixed_width_generator_to_csv_convert.py "Spec_file.txt" "fixed_width_own.txt" false "output.csv" 5
+	python fixed_width_generator_to_csv_convert.py "Spec_file.txt" "fixed_width_new.txt" true "output.csv" 100
+
+Problem 2 Solution:
+ anonymized_data_spark.py
+
+fixed_width_generator_to_csv_convert.py will generate the first_name, last_name, address, date_of_birth columns
+This script using pyspark environment for anonymized the  given first_name, last_name, address columns and using the sha2 function/algo to  anonymized the columns.
+
+anonymized_data_spark.py <input_file> <Output_file>
+
